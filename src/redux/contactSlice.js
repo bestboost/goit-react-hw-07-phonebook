@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchContacts } from './operations';
 import { nanoid } from 'nanoid';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
 
 const userContactInitialState = {
   contacts: {
@@ -39,14 +38,21 @@ export const contactSlice = createSlice({
     filterContact(state, action) {
       state.filters = action.payload;
     },
+
+    [fetchContacts.pending](state) {
+      state.isLoading = true;
+    },
+    [fetchContacts.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
+    },
+    [fetchContacts.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
-
-// const persistConfig = {
-//   key: 'userContact',
-//   storage,
-//   blacklist: ['filters'],
-// };
 
 export const { addContact, removeContact, filterContact } =
   contactSlice.actions;
