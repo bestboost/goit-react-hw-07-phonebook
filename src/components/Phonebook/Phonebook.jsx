@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts, getFilters } from '../../redux/selectors';
+import { deleteContact } from '../../redux/operations';
 import { Box } from '../Box';
 import {
   ContactBox,
@@ -9,9 +11,6 @@ import {
   DeleteButton,
   Point,
 } from './Phonebook.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilters } from '../../redux/selectors';
-import { removeContact } from '../../redux/contactSlice';
 
 const Phonebook = () => {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const Phonebook = () => {
     contact.name.toLowerCase().includes(normolizedFilter)
   );
 
-  const deleteContact = id => dispatch(removeContact(id));
+  const deleteContactBtn = id => dispatch(deleteContact(id));
 
   return (
     <Box>
@@ -33,9 +32,9 @@ const Phonebook = () => {
             <ContactItem key={contact.id}>
               <Point></Point>
               <ContactName>
-                {contact.name}: {contact.number}
+                {contact.name}: {contact.phone}
               </ContactName>
-              <DeleteButton onClick={() => deleteContact(contact.id)}>
+              <DeleteButton onClick={() => deleteContactBtn(contact.id)}>
                 Delete
               </DeleteButton>
             </ContactItem>

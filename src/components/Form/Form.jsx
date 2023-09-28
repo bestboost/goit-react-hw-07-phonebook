@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactSlice';
+import { addContact } from 'redux/operations';
 import {
   Form,
   TypeName,
@@ -23,13 +23,13 @@ const Forms = () => {
         addContact(value);
         break;
 
-      case 'number':
+      case 'phone':
         addContact(value);
         break;
 
-      case 'id':
-        addContact(value);
-        break;
+      // case 'id':
+      //   addContact(value);
+      //   break;
 
       default:
         return;
@@ -51,28 +51,37 @@ const Forms = () => {
       return;
     }
 
-    dispatch(addContact(form.elements.name.value, form.elements.number.value));
+    dispatch(addContact(form.elements.name.value, form.elements.phone.value));
     form.reset();
   };
 
-  const { id } = contacts;
+  // const { id } = contacts;
+  // console.log('Forms  id:', id);
 
   return (
     <Form onSubmit={handelSubmit}>
-      <TypeName htmlFor={id}>Name</TypeName>
+      <TypeName
+      // htmlFor={id}
+      >
+        Name
+      </TypeName>
       <InputName
-        id={id}
+        // id={id}
         type="text"
         name="name"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         onChange={handelChange}
       />
-      <TypePhone htmlFor={id}>Number</TypePhone>
+      <TypePhone
+      // htmlFor={id}
+      >
+        Phone number
+      </TypePhone>
       <InputPhone
-        id={id}
-        type="tel"
-        name="number"
+        // id={id}
+        type="number"
+        name="phone"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         onChange={handelChange}
