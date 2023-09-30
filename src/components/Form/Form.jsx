@@ -50,8 +50,11 @@ const Forms = () => {
       form.reset();
       return;
     }
-
-    dispatch(addContact(form.elements.name.value, form.elements.phone.value));
+    const contact = {
+      name: form.elements.name.value,
+      phone: form.elements.phone.value,
+    };
+    dispatch(addContact(contact));
     form.reset();
   };
 

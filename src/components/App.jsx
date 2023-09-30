@@ -6,11 +6,11 @@ import { Tiltle, Contacts } from './App.styled';
 import Phonebook from 'components/Phonebook/Phonebook';
 import Forms from 'components/Form/Form';
 import Filter from './Filter/Filter';
-import { getContacts } from 'redux/selectors';
+// import { getContacts } from 'redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
-  const items = useSelector(getContacts);
+  // const items = useSelector(getContacts);
 
   // const isLoading = useSelector(getIsLoading);
   // const error = useSelector(getError);
