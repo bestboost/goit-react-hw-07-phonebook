@@ -27,10 +27,6 @@ const Forms = () => {
         addContact(value);
         break;
 
-      // case 'id':
-      //   addContact(value);
-      //   break;
-
       default:
         return;
     }
@@ -54,35 +50,23 @@ const Forms = () => {
       name: form.elements.name.value,
       phone: form.elements.phone.value,
     };
+
     dispatch(addContact(contact));
     form.reset();
   };
 
-  // const { id } = contacts;
-  // console.log('Forms  id:', id);
-
   return (
     <Form onSubmit={handelSubmit}>
-      <TypeName
-      // htmlFor={id}
-      >
-        Name
-      </TypeName>
+      <TypeName>Name</TypeName>
       <InputName
-        // id={id}
         type="text"
         name="name"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         onChange={handelChange}
       />
-      <TypePhone
-      // htmlFor={id}
-      >
-        Phone number
-      </TypePhone>
+      <TypePhone>Phone number</TypePhone>
       <InputPhone
-        // id={id}
         type="number"
         name="phone"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"

@@ -6,14 +6,14 @@ import { Tiltle, Contacts } from './App.styled';
 import Phonebook from 'components/Phonebook/Phonebook';
 import Forms from 'components/Form/Form';
 import Filter from './Filter/Filter';
-// import { getContacts } from 'redux/selectors';
+import { getIsLoading, getError } from '../redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
-  // const items = useSelector(getContacts);
-
-  // const isLoading = useSelector(getIsLoading);
-  // const error = useSelector(getError);
+  const isLoading = useSelector(getIsLoading);
+  console.log('App  isLoading:', isLoading);
+  const error = useSelector(getError);
+  console.log('App  error:', error);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -33,12 +33,13 @@ const App = () => {
     >
       <Tiltle>Phonebook</Tiltle>
       <Forms />
+      {error && <p>Something goes wrong, try again</p>}
       <Contacts>Contacts</Contacts>
+      {isLoading && !error && <p>Request in progress...</p>}
       <Filter />
       <Phonebook />
     </Box>
   );
 };
-// };
 
 export default App;

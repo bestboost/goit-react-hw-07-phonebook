@@ -9,12 +9,13 @@ const userContactInitialState = {
   },
   filters: '',
 };
+
 const handlePending = state => {
-  state.isLoading = true;
+  state.contacts.isLoading = true;
 };
 const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
+  state.contacts.isLoading = false;
+  state.contacts.error = action.payload;
 };
 
 export const contactSlice = createSlice({
@@ -29,22 +30,22 @@ export const contactSlice = createSlice({
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [fetchContacts.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
+      state.contacts.isLoading = false;
+      state.contacts.error = null;
       state.contacts.items = action.payload;
     },
     [fetchContacts.rejected]: handleRejected,
     [addContact.pending]: handlePending,
     [addContact.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
+      state.contacts.isLoading = false;
+      state.contacts.error = null;
       state.contacts.items.push(action.payload);
     },
     [addContact.rejected]: handleRejected,
     [deleteContact.pending]: handlePending,
     [deleteContact.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
+      state.contacts.isLoading = false;
+      state.contacts.error = null;
       const index = state.contacts.items.findIndex(
         contact => contact.id === action.payload.id
       );

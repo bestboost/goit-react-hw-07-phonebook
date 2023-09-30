@@ -12,12 +12,7 @@ const Filter = () => {
   return (
     <FilterBox>
       <TypeName>Find contacts by name</TypeName>
-      <InputName
-        type="text"
-        value={filters}
-        onChange={nameFilter}
-        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-      />
+      <InputName type="text" value={filters} onChange={nameFilter} />
     </FilterBox>
   );
 };
