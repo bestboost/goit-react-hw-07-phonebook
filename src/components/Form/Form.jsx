@@ -9,11 +9,11 @@ import {
   InputPhone,
   AddButton,
 } from './Form.styled';
-import { getContacts } from '../../redux/selectors';
+import { selectContacts } from '../../redux/selectors';
 
 const Forms = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handelChange = e => {
     const { value } = e.currentTarget;

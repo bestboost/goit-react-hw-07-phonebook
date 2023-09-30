@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilters } from '../../redux/selectors';
+import { selectVisibleContacts } from '../../redux/selectors';
 import { deleteContact } from '../../redux/operations';
 import { Box } from '../Box';
 import {
@@ -14,13 +14,7 @@ import {
 
 const Phonebook = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filters = useSelector(getFilters);
-
-  const normolizedFilter = filters.toLowerCase();
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normolizedFilter)
-  );
+  const visibleContacts = useSelector(selectVisibleContacts);
 
   const deleteContactBtn = id => dispatch(deleteContact(id));
 
