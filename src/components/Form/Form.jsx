@@ -36,20 +36,21 @@ const Forms = () => {
     e.preventDefault();
     const form = e.currentTarget;
 
-    const alertCondition = contacts.map(contact => contact.name);
-    if (
-      alertCondition.find(
-        item => item.toLowerCase() === form.elements.name.value.toLowerCase()
-      )
-    ) {
-      alert(form.elements.name.value + ' is already in contacts');
-      form.reset();
-      return;
-    }
     const contact = {
       name: form.elements.name.value,
       phone: form.elements.phone.value,
     };
+
+    if (
+      contacts.find(
+        prevContact =>
+          prevContact.name.toLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      alert(contact.name + ' is already in contacts');
+      form.reset();
+      return;
+    }
 
     dispatch(addContact(contact));
     form.reset();
