@@ -68,7 +68,7 @@ const Forms = () => {
       />
       <TypePhone>Phone number</TypePhone>
       <InputPhone
-        type="number"
+        type="tel"
         name="phone"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
